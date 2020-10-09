@@ -5,7 +5,7 @@ require 'mechanize'
 # Ouverture de la page via Nokogiri
 #page = Nokogiri::HTML(URI.open("https://coinmarketcap.com/all/views/all/"))
 
-
+# Méthode pour chercher la liste de symbole de crypto et les intégrer dans le tableau symbol_list_array 
 def crypto_symbol_list 
   page = Nokogiri::HTML(URI.open("https://coinmarketcap.com/all/views/all/"))
   symbol_list = page.xpath('//td[@class="cmc-table__cell cmc-table__cell--sortable cmc-table__cell--left cmc-table__cell--sort-by__symbol"]')
@@ -15,6 +15,8 @@ def crypto_symbol_list
   end
   return symbol_list_array
 end
+
+# Méthode pour la liste des valeurs de crypto et les intégrer dans le tableau price_list_array 
 def crypto_price_list
   page = Nokogiri::HTML(URI.open("https://coinmarketcap.com/all/views/all/"))
   price_list = page.xpath('//td[@class="cmc-table__cell cmc-table__cell--sortable cmc-table__cell--right cmc-table__cell--sort-by__price"]')
@@ -24,46 +26,14 @@ def crypto_price_list
   end
   return price_list_array
 end
-
+# Méthode pour combiner en hash et mettre un peu en forme tout ça
 def perform
   listedefsymbole = crypto_symbol_list
   listedefprice = crypto_price_list
-  hash = Hash[listedefsymbole.zip(listedefprice)].each_slice(1).map(&:to_h) ### !!!!!
+  hash = Hash[listedefsymbole.zip(listedefprice)].each_slice(1).map(&:to_h) 
   puts hash.count
 end
 
 perform
-
-
-
-
-
-
-
-
-# news_links = page.select("//a"[@cmc-table__cell--sort-by__name])
-# #.select{|link| link['td class'] == "cmc-table__cell cmc-table__cell--sticky cmc-table__cell--sortable cmc-table__cell--left cmc-table__cell--sort-by__name"}
-# news_links.each{|link| puts link['href'] }
-# puts emails_list.count      
-
-
-#def test_crypto_hash
-# set URL to point to where the page exists
-# links = page.xpath('//a[contains(@href, "cell--sort-by__name")]')
-# puts links.length   # => 6
-# puts links.text   # => Click here
-# puts links[0]["href"]
-#end
-
-
-#crypto_list = Hash.new
-# emails_list.each do |email_link|
-#   puts crypto_list << email_link.text #ou n'importe quelle autre opération
-#   end
-
-
-
-#emails_list.css("a").select{|link| ["href"] == "/currencies/"}
-#emails_list.each{|link| puts link.text}
 
 
