@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
-  
+require 'mechanize'  
 # Ouverture de la page via Nokogiri
 #page = Nokogiri::HTML(URI.open("https://coinmarketcap.com/all/views/all/"))
 
@@ -29,12 +29,10 @@ def perform
   listedefsymbole = crypto_symbol_list
   listedefprice = crypto_price_list
   hash = Hash[listedefsymbole.zip(listedefprice)].each_slice(1).map(&:to_h) ### !!!!!
-  #puts hash
+  puts hash.count
 end
 
-#perform
-
-
+perform
 
 
 

@@ -6,7 +6,7 @@ describe "Est ce un array ?!" do
       expect(crypto_symbol_list.class).to eq(Array)
     end
   end
-  describe "length" do
+  describe              "length" do
     it "should echo the array size 1" do
       expect(crypto_symbol_list.length).to eq(200)
     end
@@ -16,7 +16,7 @@ describe "Est ce un array ?!" do
   end
   describe "Is there a Bitcoin here ?!" do
     it "should echo the truth" do
-      expect(crypto_symbol_list).to include("BTC")
+      expect(crypto_symbol_list).to include("DOT")
     end
   end
 end

@@ -7,7 +7,7 @@ require 'open-uri'
 
 def get_city_list
   page = Nokogiri::HTML(URI.open("http://annuaire-des-mairies.com/val-d-oise.html"))
-  citys = page.xpath(('//a[@class="lientxt"]')).each{|city| @city_list << city.text.downcase.gsub(" ","-")}
+  return citys = page.xpath(('//a[@class="lientxt"]')).each{|city| @city_list << city.text.downcase.gsub(" ","-")}
 end
 
 def get_city_email
@@ -20,7 +20,7 @@ end
 
 def fusion
   hash_final = Hash[*@city_list.zip(@city_mail).flatten]
-  puts hash_final.each_slice(1).map(&:to_h)
+  return puts hash_final.each_slice(1).map(&:to_h)
 end
 
 def perform
